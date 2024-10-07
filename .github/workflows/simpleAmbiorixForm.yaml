@@ -50,6 +50,7 @@ jobs:
         print(list.files())
         if(  "${{ secrets.RS_CONNECT_NAME }}" == "") {quit()}
         renv::restore()
+        install.packages("shiny")
         rsconnect::setAccountInfo("${{ secrets.RS_CONNECT_NAME }}", "${{ secrets.RS_CONNECT_TOKEN }}", "${{ secrets.RS_CONNECT_SECRET }}")
         rsconnect::deployApp(appName = "${{ env.APPNAME }}" , forceUpdate = TRUE)
       

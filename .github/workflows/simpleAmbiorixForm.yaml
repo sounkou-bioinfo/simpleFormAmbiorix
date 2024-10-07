@@ -27,10 +27,7 @@ steps:
 - name: Publish connect
   shell: Rscript {0}
   run: |
-    rsconnect::setAccountInfo(name = Sys.getenv("RS_CONNECT_NAME"),
-			  token = Sys.getenv("RS_CONNECT_TOKEN"),
-			  secret = Sys.getenv("RS_CONNECT_SECRET")
-              )
+    rsconnect::setAccountInfo(name = Sys.getenv("RS_CONNECT_NAME"),token = Sys.getenv("RS_CONNECT_TOKEN"), secret = Sys.getenv("RS_CONNECT_SECRET"))
     rsconnect::deployApp(appName = "simpleFormAmbiorix" , forceUpdate = TRUE)
   with:
     RS_CONNECT_NAME: ${{ secrets.RS_CONNECT_NAME }}

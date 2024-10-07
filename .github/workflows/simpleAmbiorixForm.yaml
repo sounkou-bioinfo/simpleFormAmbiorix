@@ -1,0 +1,38 @@
+name: simpleForm
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+ 
+env:
+  RENV_PATHS_ROOT: ~/.cache/R/renv
+
+steps:
+
+- name: Cache packages
+  uses: actions/cache@v1
+  with:
+    path: ${{ env.RENV_PATHS_ROOT }}
+    key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+    restore-keys: |
+      ${{ runner.os }}-renv-
+
+- name: Restore packages
+  shell: Rscript {0}
+  run: |
+    if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+    renv::restore()
+
+- name: Publish connect
+  shell: Rscript {0}
+  run: |
+    rsconnect::setAccountInfo(name = Sys.getenv("RS_CONNECT_NAME"),
+			  token = Sys.getenv("RS_CONNECT_TOKEN"),
+			  secret = Sys.getenv("RS_CONNECT_SECRET")
+              )
+    rsconnect::deployApp(appName = "simpleFormAmbiorix" , forceUpdate = TRUE)
+  with:
+    RS_CONNECT_NAME: ${{ SECRET.RS_CONNECT_NAME }}
+    RS_CONNECT_TOKEN: ${{ SECRET.RS_CONNECT_TOKEN }}
+    RS_CONNECT_SECRET: ${{ SECRET.RS_CONNECT_SECRET }}

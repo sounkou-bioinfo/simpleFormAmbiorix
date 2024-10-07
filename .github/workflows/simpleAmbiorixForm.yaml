@@ -33,6 +33,6 @@ steps:
               )
     rsconnect::deployApp(appName = "simpleFormAmbiorix" , forceUpdate = TRUE)
   with:
-    RS_CONNECT_NAME: ${{ SECRET.RS_CONNECT_NAME }}
-    RS_CONNECT_TOKEN: ${{ SECRET.RS_CONNECT_TOKEN }}
-    RS_CONNECT_SECRET: ${{ SECRET.RS_CONNECT_SECRET }}
+    RS_CONNECT_NAME: ${{ secrets.RS_CONNECT_NAME }}
+    RS_CONNECT_TOKEN: ${{ secrets.RS_CONNECT_TOKEN }}
+    RS_CONNECT_SECRET: ${{ secrets.RS_CONNECT_SECRET }}

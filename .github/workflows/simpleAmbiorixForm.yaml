@@ -39,7 +39,7 @@ jobs:
 
       shell: bash
   
-    - name: Publish shinyapps
+    - name: Publish on shinyapps.io
       env:
         APPNAME: simpleFormAmbiorix
         ACCOUNT: ${{ secrets.RS_CONNECT_NAME }}

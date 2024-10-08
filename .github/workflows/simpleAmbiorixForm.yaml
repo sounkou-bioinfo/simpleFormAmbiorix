@@ -25,19 +25,6 @@ jobs:
           use-public-rspm: true
 
     - uses: r-lib/actions/setup-renv@v2
-
-    - name: Create and populate .Renviron file
-      env:
-        RS_CONNECT_NAME: ${{ secrets.RS_CONNECT_NAME }}
-        RS_CONNECT_TOKEN: ${{ secrets.RS_CONNECT_TOKEN }}
-        RS_CONNECT_SECRET: ${{ secrets.RS_CONNECT_SECRET }}
-      run: |
-        echo $PWD
-        if [ -z "${RS_CONNECT_NAME}" ]; then echo "----empty" ; fi
-        if [ -z "${RS_CONNECT_TOKEN}" ]; then echo "----empty" ; fi
-        if [ -z "${RS_CONNECT_SECRET}" ]; then echo "----empty" ; fi
-
-      shell: bash
   
     - name: Publish on shinyapps.io
       env:

@@ -2,7 +2,7 @@
 
 This is a hack to deploy `{ambiorix}` apps via shiny servers from https://x.com/ambiorixweb/status/1842509254214697346. Needed to install a previous version of rsconnect for this to work with the custom renv.lock.
 
-## Standard shiny server
+## Standard shiny server ( community or pro)
 
 A running shiny server where `{ambiorix}` and `{htmltools}` are installed.
 
